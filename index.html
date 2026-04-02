@@ -19,77 +19,49 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0; 
-            background-color: var(--bg-color);
-            color: var(--text-main); 
-            display: flex;
-            flex-direction: column; 
-            align-items: center;
-            overflow-x: hidden; 
-            padding-bottom: 50px;
-            position: relative; /* एनीमेशन के लिए */
+            margin: 0; background-color: var(--bg-color);
+            color: var(--text-main); display: flex;
+            flex-direction: column; align-items: center;
+            overflow-x: hidden; padding-bottom: 80px;
+            position: relative;
         }
 
-        /* --- एनीमेटेड बैकग्राउंड (एनीमे ओरा) --- */
+        /* एनीमेटेड बैकग्राउंड */
         body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0;
+            content: ""; position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
-            background-image: 
-                radial-gradient(white, rgba(255,255,255,0) 2px), /* छोटे सफ़ेद तारे */
-                radial-gradient(var(--cyan-glow), rgba(0,255,255,0) 1px); /* छोटे नीले ओरा कण */
-            background-size: 100px 100px, 60px 60px;
-            background-position: 0 0, 30px 30px;
-            opacity: 0.12; /* बहुत हल्का, ताकि टेक्स्ट पर असर न पड़े */
-            animation: move-aura 25s linear infinite; /* ओरा एनीमेशन */
-            z-index: -1; /* सब कुछ के पीछे */
+            background-image: radial-gradient(white, rgba(255,255,255,0) 2px), radial-gradient(var(--cyan-glow), rgba(0,255,255,0) 1px);
+            background-size: 100px 100px, 60px 60px; opacity: 0.12;
+            animation: move-aura 25s linear infinite; z-index: -1;
         }
+        @keyframes move-aura { from { background-position: 0 0; } to { background-position: 500px 1000px; } }
 
-        @keyframes move-aura {
-            from { background-position: 0 0, 30px 30px; }
-            to { background-position: 500px 1000px, 400px 800px; } /* कणों को ऊपर तैरने देना */
-        }
-
-        /* --- बाकी ऐप का स्टाइल (वही रहेगा) --- */
         .main-title { 
-            font-family: 'Bangers', cursive;
-            font-size: 32px; 
-            color: var(--cyan-glow); 
-            letter-spacing: 3px; 
-            text-shadow: 0 0 15px var(--cyan-glow);
-            margin-top: 10px;
-            text-transform: uppercase;
+            font-family: 'Bangers', cursive; font-size: 32px; 
+            color: var(--cyan-glow); letter-spacing: 3px; 
+            text-shadow: 0 0 15px var(--cyan-glow); margin-top: 20px;
         }
 
-        h3, h2 {
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        h3, h2 { font-family: 'Orbitron', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+
+        /* --- NEW BOTTOM BACK BUTTON --- */
+        .bottom-nav {
+            position: fixed; bottom: 25px; width: 100%;
+            display: flex; justify-content: center; z-index: 4000;
+            pointer-events: none;
         }
 
-        .back-nav {
-            position: sticky; top: 0; width: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(15px);
-            padding: 12px 20px; z-index: 3000;
-            display: flex; align-items: center;
-            border-bottom: 1px solid #222;
-            box-sizing: border-box;
-        }
-
-        .back-btn-neon {
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(45deg, #00ffff, #008080);
-            color: #000; border: none;
-            padding: 8px 20px; border-radius: 25px;
-            font-weight: 900; font-size: 11px;
-            box-shadow: 0 0 15px var(--cyan-glow);
-            cursor: pointer;
+        .back-btn-float {
+            pointer-events: auto; font-family: 'Orbitron', sans-serif;
+            background: rgba(0, 0, 0, 0.85); color: var(--cyan-glow);
+            border: 2px solid var(--cyan-glow); padding: 12px 35px;
+            border-radius: 30px; font-weight: 900; font-size: 13px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            cursor: pointer; text-transform: uppercase;
+            backdrop-filter: blur(10px); display: none; /* Hidden initially */
         }
 
         .profile-section { margin-top: 30px; text-align: center; }
-        
         .img-circle {
             width: 120px; height: 120px; border-radius: 50%;
             border: 3px solid var(--cyan-glow); box-shadow: 0 0 25px var(--cyan-glow);
@@ -100,13 +72,12 @@
         .nav-card {
             background: var(--card-bg); border-radius: 18px; padding: 22px;
             border: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center;
-            backdrop-filter: blur(5px); /* बॉक्सेस के पीछे हल्का ब्लर */
         }
 
         #details, #sub-details {
             display: none; position: fixed; top: 0; left: 0; 
             width: 100%; height: 100%; background: #000;
-            z-index: 2500; overflow-y: auto;
+            z-index: 2500; overflow-y: auto; padding-top: 20px;
         }
 
         .item-card {
@@ -117,24 +88,20 @@
         
         .list-icon { 
             width: 60px; height: 60px; border-radius: 50%; 
-            object-fit: cover; 
-            border: 2px solid var(--cyan-glow); 
+            object-fit: cover; border: 2px solid var(--cyan-glow); 
             box-shadow: 0 0 10px rgba(0,255,255,0.5);
         }
         
         .card-info { flex: 1; }
-        .card-info h4 { font-family: 'Orbitron', sans-serif; margin: 0; font-size: 16px; color: #fff; text-transform: uppercase; }
-        .card-info p { margin: 4px 0 10px; font-size: 12px; color: var(--text-dim); }
+        .card-info h4 { font-family: 'Orbitron', sans-serif; margin: 0; font-size: 15px; color: #fff; text-transform: uppercase; }
+        .card-info p { margin: 4px 0 10px; font-size: 11px; color: var(--text-dim); }
 
         .btn-cyan {
-            font-family: 'Orbitron', sans-serif;
-            background: var(--cyan-glow); color: #000; border: none;
-            padding: 9px 18px; border-radius: 8px; font-weight: bold;
-            text-decoration: none; font-size: 11px; display: inline-block;
-            box-shadow: 0 0 10px rgba(0,255,255,0.3);
-            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif; background: var(--cyan-glow);
+            color: #000; border: none; padding: 8px 16px;
+            border-radius: 8px; font-weight: bold; font-size: 10px;
+            box-shadow: 0 0 10px rgba(0,255,255,0.3); text-transform: uppercase;
         }
-
     </style>
 </head>
 <body>
@@ -159,15 +126,17 @@
         </div>
     </div>
 
+    <div class="bottom-nav">
+        <button id="globalBackBtn" class="back-btn-float" onclick="smartBack()">← BACK TO MENU</button>
+    </div>
+
     <div id="details">
-        <div class="back-nav"><button class="back-btn-neon" onclick="closeSec()">← BACK</button></div>
-        <h2 id="det-title" style="margin-left:20px;"></h2>
+        <h2 id="det-title" style="margin-left:22px;"></h2>
         <div id="det-body"></div>
     </div>
 
     <div id="sub-details">
-        <div class="back-nav"><button class="back-btn-neon" onclick="closeSubSec()">← BACK</button></div>
-        <h2 id="sub-det-title" style="margin-left:20px;"></h2>
+        <h2 id="sub-det-title" style="margin-left:22px;"></h2>
         <div id="sub-det-body"></div>
     </div>
 
@@ -184,60 +153,36 @@
             tempest_index: "index.jpg",
             tempest_main: "main.jpg", 
             tg_icon: "tg.jpg",
-            ig_icon: "ig.jpg"
+            ig_icon: "ig.jpg",
+            goku: "goku.jpg",   // मेक श्योर ये फाइल्स GitHub पर हों
+            smokey: "smokey.jpg" 
         };
+
+        const backBtn = document.getElementById('globalBackBtn');
 
         function openSec(type) {
             const d = document.getElementById('details');
-            const title = document.getElementById('det-title');
             const body = document.getElementById('det-body');
-            title.innerText = type;
+            document.getElementById('det-title').innerText = type;
+            backBtn.style.display = 'block';
 
             if(type === 'CHANNELS') {
                 body.innerHTML = `
-                    <div class="item-card">
-                        <img src="${pics.ongoing}" class="list-icon">
-                        <div class="card-info"><h4>Ongoing Anime</h4><p>Latest Hindi Episodes</p><a href="https://t.me/+mr5SZGOlW0U4YmQ1" class="btn-cyan" target="_blank">JOIN</a></div>
-                    </div>
-                    <div class="item-card">
-                        <img src="${pics.tempest_index}" class="list-icon">
-                        <div class="card-info"><h4>Tempest Index</h4><p>Complete Database</p><a href="https://t.me/+WevEPT5r7K1lNjY1" class="btn-cyan" target="_blank">JOIN</a></div>
-                    </div>
-                    <div class="item-card">
-                        <img src="${pics.tempest_main}" class="list-icon">
-                        <div class="card-info"><h4>Tempest main</h4><p>network & community post</p><a href="https://t.me/tempest_main" class="btn-cyan" target="_blank">JOIN</a></div>
-                    </div>
+                    <div class="item-card"><img src="${pics.ongoing}" class="list-icon"><div class="card-info"><h4>Ongoing Anime</h4><p>Latest Hindi Episodes</p><a href="https://t.me/+mr5SZGOlW0U4YmQ1" class="btn-cyan">JOIN</a></div></div>
+                    <div class="item-card"><img src="${pics.tempest_index}" class="list-icon"><div class="card-info"><h4>Tempest Index</h4><p>Complete Database</p><a href="https://t.me/+WevEPT5r7K1lNjY1" class="btn-cyan">JOIN</a></div></div>
+                    <div class="item-card"><img src="${pics.tempest_main}" class="list-icon"><div class="card-info"><h4>Tempest main</h4><p>Network & Community</p><a href="https://t.me/tempest_main" class="btn-cyan">JOIN</a></div></div>
                 `;
             } else if(type === 'TEAM') {
                 body.innerHTML = `
-                    <div class="item-card">
-                        <img src="${pics.kakashi}" class="list-icon">
-                        <div class="card-info"><h4>KAKASHI</h4><p>Founder</p><button class="btn-cyan" onclick="openKakashiSocials()">SOCIALS</button></div>
-                    </div>
-                    <div class="item-card">
-                        <img src="${pics.akira}" class="list-icon">
-                        <div class="card-info"><h4>AKIRA</h4><p>Lead Developer</p><a href="https://t.me/MightyEmperor" class="btn-cyan" target="_blank">CHAT</a></div>
-                    </div>
-                    <div class="item-card">
-                        <img src="${pics.goku}" class="list-icon">
-                        <div class="card-info"><h4>GOKU</h4><p>co-founder</p><a href="https://t.me/goku_shinobi" class="btn-cyan" target="_blank">CHAT</a></div>
-                    </div>
-                    <div class="item-card">
-                        <img src="${pics.naruto}" class="list-icon">
-                        <div class="card-info"><h4>NARUTO</h4><p>NETWORK OWNER</p><a href="https://t.me/qtflake" class="btn-cyan" target="_blank">CHAT</a></div>
-                    </div>
-                    <div class="item-card">
-                        <img src="${pics.smokey}" class="list-icon">
-                        <div class="card-info"><h4>SMOKEY</h4><p>MANEGER</p><a href="https://t.me/con_dom" class="btn-cyan" target="_blank">CHAT</a></div>
-                    </div>
-                    
+                    <div class="item-card"><img src="${pics.kakashi}" class="list-icon"><div class="card-info"><h4>KAKASHI</h4><p>Founder</p><button class="btn-cyan" onclick="openKakashiSocials()">SOCIALS</button></div></div>
+                    <div class="item-card"><img src="${pics.akira}" class="list-icon"><div class="card-info"><h4>AKIRA</h4><p>Lead Developer</p><a href="https://t.me/MightyEmperor" class="btn-cyan">CHAT</a></div></div>
+                    <div class="item-card"><img src="${pics.goku}" class="list-icon"><div class="card-info"><h4>GOKU</h4><p>Co-Founder</p><a href="https://t.me/goku_shinobi" class="btn-cyan">CHAT</a></div></div>
+                    <div class="item-card"><img src="${pics.naruto}" class="list-icon"><div class="card-info"><h4>NARUTO</h4><p>Network Owner</p><a href="https://t.me/qtflake" class="btn-cyan">CHAT</a></div></div>
+                    <div class="item-card"><img src="${pics.smokey}" class="list-icon"><div class="card-info"><h4>SMOKEY</h4><p>Manager</p><a href="https://t.me/con_dom" class="btn-cyan">CHAT</a></div></div>
                 `;
             } else if(type === 'BOTS') {
                 body.innerHTML = `
-                    <div class="item-card">
-                        <img src="${pics.raphael}" class="list-icon">
-                        <div class="card-info"><h4>Raphael Bot</h4><p>AI Manager</p><a href="https://t.me/tempest_animeresercher_bot" class="btn-cyan" target="_blank">OPEN</a></div>
-                    </div>
+                    <div class="item-card"><img src="${pics.raphael}" class="list-icon"><div class="card-info"><h4>Raphael Bot</h4><p>AI Manager</p><a href="https://t.me/tempest_animeresercher_bot" class="btn-cyan">OPEN</a></div></div>
                 `;
             }
             d.style.display = 'block';
@@ -247,14 +192,8 @@
             const sub = document.getElementById('sub-details');
             document.getElementById('sub-det-title').innerText = "SOCIALS";
             document.getElementById('sub-det-body').innerHTML = `
-                <div class="item-card" onclick="openIdList()">
-                    <img src="${pics.tg_icon}" class="list-icon">
-                    <div class="card-info"><h4>TELEGRAM</h4><p>Official IDs List</p></div>
-                </div>
-                <div class="item-card" onclick="window.open('https://instagram.com/half_10053', '_blank')">
-                    <img src="${pics.ig_icon}" class="list-icon">
-                    <div class="card-info"><h4>INSTAGRAM</h4><p>Follow Me</p></div>
-                </div>
+                <div class="item-card" onclick="openIdList()"><img src="${pics.tg_icon}" class="list-icon"><div class="card-info"><h4>TELEGRAM</h4><p>Official IDs List</p></div></div>
+                <div class="item-card" onclick="window.open('https://instagram.com/half_10053', '_blank')"><img src="${pics.ig_icon}" class="list-icon"><div class="card-info"><h4>INSTAGRAM</h4><p>Follow Me</p></div></div>
             `;
             sub.style.display = 'block';
         }
@@ -262,18 +201,23 @@
         function openIdList() {
             document.getElementById('sub-det-title').innerText = "IDS";
             document.getElementById('sub-det-body').innerHTML = `
-                <div class="item-card">
-                    <div class="card-info"><h4>Main ID</h4><p>@Thesoul_xD</p><a href="https://t.me/Thesoul_xD" class="btn-cyan" target="_blank">MESSAGE</a></div>
-                </div>
+                <div class="item-card"><div class="card-info"><h4>Main ID</h4><p>@Thesoul_xD</p><a href="https://t.me/Thesoul_xD" class="btn-cyan">MESSAGE</a></div></div>
             `;
         }
 
-        function closeSec() { document.getElementById('details').style.display = 'none'; }
-        function closeSubSec() { 
-            if(document.getElementById('sub-det-title').innerText === "IDS") {
-                openKakashiSocials();
+        // SMART BACK FUNCTION
+        function smartBack() {
+            const sub = document.getElementById('sub-details');
+            const det = document.getElementById('details');
+            if (sub.style.display === 'block') {
+                if (document.getElementById('sub-det-title').innerText === "IDS") {
+                    openKakashiSocials();
+                } else {
+                    sub.style.display = 'none';
+                }
             } else {
-                document.getElementById('sub-details').style.display = 'none'; 
+                det.style.display = 'none';
+                backBtn.style.display = 'none';
             }
         }
     </script>
