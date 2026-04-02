@@ -23,7 +23,6 @@
             overflow-x: hidden; padding-bottom: 50px;
         }
 
-        /* STYLISH BACK NAV */
         .back-nav {
             position: sticky; top: 0; width: 100%;
             background: rgba(0, 0, 0, 0.9);
@@ -43,7 +42,6 @@
             cursor: pointer; text-transform: uppercase;
         }
 
-        /* Profile */
         .profile-section { margin-top: 30px; text-align: center; }
         .profile-circle {
             width: 120px; height: 120px; border-radius: 50%;
@@ -52,21 +50,18 @@
         }
         .main-title { font-size: 24px; font-weight: bold; color: var(--cyan-glow); letter-spacing: 2px; text-shadow: 0 0 10px var(--cyan-glow); text-transform: uppercase; }
 
-        /* Menu */
         .menu-container { width: 92%; margin-top: 30px; display: flex; flex-direction: column; gap: 15px; }
         .nav-card {
             background: var(--card-bg); border-radius: 18px; padding: 22px;
             border: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center;
         }
 
-        /* Overlays */
         #details, #sub-details {
             display: none; position: fixed; top: 0; left: 0; 
             width: 100%; height: 100%; background: #000;
             z-index: 2500; overflow-y: auto;
         }
 
-        /* Cards Style */
         .item-card {
             background: var(--glass); border-radius: 15px; padding: 18px;
             margin: 12px 18px; display: flex; align-items: center; gap: 15px;
@@ -85,7 +80,6 @@
         }
 
         h2 { margin: 20px 22px; font-size: 24px; color: var(--cyan-glow); text-transform: uppercase; }
-
     </style>
 </head>
 <body>
@@ -97,7 +91,7 @@
 
     <div class="menu-container">
         <div class="nav-card">
-            <div><h3 style="margin:0;">📡 CHANNELS</h3><p style="color:var(--text-dim); font-size:12px;">Update Hubs</p></div>
+            <div><h3 style="margin:0;">📡 CHANNELS</h3><p style="color:var(--text-dim); font-size:12px;">Join Hubs</p></div>
             <button class="btn-cyan" onclick="openSec('CHANNELS')">SHOW</button>
         </div>
         <div class="nav-card">
@@ -126,12 +120,16 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
 
-        const myImg = "https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg";
-        
-        // वर्किंग आइकन्स
-        const icons = {
-            tg: "https://graph.org/file/c144ecb7bdfba77066953-b0f18969c0e6f48d8b.jpg",
-            ig: "https://graph.org/file/70cb7dac798a886e14b63-49577b3801d340b295.jpg"
+        const pics = {
+            main_profile: "https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg",
+            kakashi: "https://graph.org/file/677ab5e12e4c877e50992-30038e6b3fb1004b9c.jpg",
+            akira: "https://graph.org/file/e43410b49f6c5fe7d6b3e-6489a13cac960028f8.jpg",
+            naruto: "https://graph.org/file/7aad331887bf0412ecf52-d38393965a67743fe4.jpg",
+            raphael: "https://graph.org/file/cab9c3ddec6f93446ecf7-94003dc9918819cf3a.jpg",
+            ongoing: "https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg",
+            tempest_index: "https://graph.org/file/914b50896003e019285d2-8a980a64e8ef20e02d.jpg",
+            tg_icon: "https://graph.org/file/c144ecb7bdfba77066953-b0f18969c0e6f48d8b.jpg",
+            ig_icon: "https://graph.org/file/70cb7dac798a886e14b63-49577b3801d340b295.jpg"
         };
 
         function openSec(type) {
@@ -143,25 +141,33 @@
             if(type === 'CHANNELS') {
                 body.innerHTML = `
                     <div class="item-card">
-                        <img src="${myImg}" class="card-icon">
+                        <img src="${pics.ongoing}" class="card-icon">
                         <div class="card-info"><h4>Ongoing Anime</h4><p>Latest Hindi Episodes</p><a href="https://t.me/+mr5SZGOlW0U4YmQ1" class="btn-cyan" target="_blank">JOIN</a></div>
+                    </div>
+                    <div class="item-card">
+                        <img src="${pics.tempest_index}" class="card-icon">
+                        <div class="card-info"><h4>Tempest Index</h4><p>Complete Database</p><a href="https://t.me/+WevEPT5r7K1lNjY1" class="btn-cyan" target="_blank">JOIN</a></div>
                     </div>
                 `;
             } else if(type === 'TEAM') {
                 body.innerHTML = `
                     <div class="item-card">
-                        <img src="${myImg}" class="card-icon">
+                        <img src="${pics.kakashi}" class="card-icon">
                         <div class="card-info"><h4>KAKASHI</h4><p>Founder</p><button class="btn-cyan" onclick="openKakashiSocials()">SOCIALS</button></div>
                     </div>
                     <div class="item-card">
-                        <img src="${myImg}" class="card-icon">
+                        <img src="${pics.akira}" class="card-icon">
                         <div class="card-info"><h4>AKIRA</h4><p>Lead Developer</p><a href="https://t.me/MightyEmperor" class="btn-cyan" target="_blank">CHAT</a></div>
+                    </div>
+                    <div class="item-card">
+                        <img src="${pics.naruto}" class="card-icon">
+                        <div class="card-info"><h4>NARUTO</h4><p>Team Member</p><a href="https://t.me/Thesoul_xD" class="btn-cyan" target="_blank">CHAT</a></div>
                     </div>
                 `;
             } else if(type === 'BOTS') {
                 body.innerHTML = `
                     <div class="item-card">
-                        <img src="${myImg}" class="card-icon">
+                        <img src="${pics.raphael}" class="card-icon">
                         <div class="card-info"><h4>Raphael Bot</h4><p>AI Manager</p><a href="https://t.me/tempest_animeresercher_bot" class="btn-cyan" target="_blank">OPEN</a></div>
                     </div>
                 `;
@@ -169,47 +175,40 @@
             d.style.display = 'block';
         }
 
-        // KAKASHI'S SOCIAL PAGE
         function openKakashiSocials() {
             const sub = document.getElementById('sub-details');
             document.getElementById('sub-det-title').innerText = "KAKASHI LINKS";
             document.getElementById('sub-det-body').innerHTML = `
                 <div class="item-card" onclick="openIdList()">
-                    <img src="${icons.tg}" style="width:45px; height:45px; object-fit:contain;">
-                    <div class="card-info"><h4>TELEGRAM</h4><p>View all official IDs</p></div>
+                    <img src="${pics.tg_icon}" style="width:45px; height:45px; border-radius:10px; object-fit:cover;">
+                    <div class="card-info"><h4>TELEGRAM</h4><p>Official IDs List</p></div>
                 </div>
-                <div class="item-card" onclick="window.open('https://instagram.com/half_10053', '_blank')">
-                    <img src="${icons.ig}" style="width:45px; height:45px; object-fit:contain;">
-                    <div class="card-info"><h4>INSTAGRAM</h4><p>Follow on Insta</p></div>
+                <div class="item-card" onclick="window.open('https://instagram.com/Thesoul_xD', '_blank')">
+                    <img src="${pics.ig_icon}" style="width:45px; height:45px; border-radius:10px; object-fit:cover;">
+                    <div class="card-info"><h4>INSTAGRAM</h4><p>Follow Me</p></div>
                 </div>
             `;
             sub.style.display = 'block';
         }
 
-        // KAKASHI'S TELEGRAM ID LIST (अब कोई पॉप-अप नहीं, असली लिस्ट खुलेगी)
         function openIdList() {
             const body = document.getElementById('sub-det-body');
             document.getElementById('sub-det-title').innerText = "TELEGRAM IDS";
             body.innerHTML = `
                 <div class="item-card">
-                    <div class="card-info">
-                        <h4>Main ID</h4>
-                        <p>@Thesoul_xD</p>
-                        <a href="https://t.me/Thesoul_xD" class="btn-cyan" target="_blank">SEND MESSAGE</a>
-                    </div>
-                </div>
-                <div class="item-card">
-                    <div class="card-info">
-                        <h4>Support ID</h4>
-                        <p>@Kakashi_Support</p>
-                        <a href="https://t.me/Thesoul_xD" class="btn-cyan" target="_blank">SEND MESSAGE</a>
-                    </div>
+                    <div class="card-info"><h4>Main ID</h4><p>@Thesoul_xD</p><a href="https://t.me/Thesoul_xD" class="btn-cyan" target="_blank">MESSAGE</a></div>
                 </div>
             `;
         }
 
         function closeSec() { document.getElementById('details').style.display = 'none'; }
-        function closeSubSec() { document.getElementById('sub-details').style.display = 'none'; }
+        function closeSubSec() { 
+            if(document.getElementById('sub-det-title').innerText === "TELEGRAM IDS") {
+                openKakashiSocials();
+            } else {
+                document.getElementById('sub-details').style.display = 'none'; 
+            }
+        }
     </script>
 </body>
 </html>
