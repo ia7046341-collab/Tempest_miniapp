@@ -122,12 +122,13 @@
 
         // आपकी फाइलों के सीधे नाम (GitHub से)
         const pics = {
-            kakashi: "main.jpg", // Kakashi के लिए main.jpg
+            kakashi: "kakashi.jpg", // Kakashi के लिए main.jpg
             akira: "akira.jpg",
             naruto: "naruto.jpg",
             raphael: "raphael.jpg",
             ongoing: "ongoing.jpg",
-            tempest_index: "index.jpg"
+            tempest_index: "index.jpg",
+            tempest_main: " main.jpg"
         };
 
         function openSec(type) {
@@ -145,6 +146,10 @@
                     <div class="item-card">
                         <img src="${pics.tempest_index}" class="card-icon">
                         <div class="card-info"><h4>Tempest Index</h4><p>Complete Database</p><a href="https://t.me/+WevEPT5r7K1lNjY1" class="btn-cyan" target="_blank">JOIN</a></div>
+                    </div>
+                    <div class="item-card">
+                        <img src="${pics.tempest_main}" class="card-icon">
+                        <div class="card-info"><h4>Tempest main</h4><p>network & community post</p><a href="https://t.me/tempest_main" class="btn-cyan" target="_blank">JOIN</a></div>
                     </div>
                 `;
             } else if(type === 'TEAM') {
