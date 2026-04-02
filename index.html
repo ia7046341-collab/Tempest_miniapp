@@ -21,7 +21,7 @@
             background: radial-gradient(circle at center, #001f1f 0%, #000000 80%);
             color: var(--text-main); 
             display: flex; flex-direction: column; align-items: center;
-            overflow-x: hidden; padding-bottom: 90px;
+            overflow-x: hidden; padding-bottom: 100px;
         }
 
         /* सुपर चमकदार एनीमेटेड बैकग्राउंड */
@@ -32,8 +32,8 @@
                 radial-gradient(var(--cyan-glow), rgba(0,255,255,0) 3px),
                 radial-gradient(rgba(0,255,255,0.8), rgba(0,255,255,0) 5px);
             background-size: 100px 100px, 70px 70px, 150px 150px;
-            opacity: 0.3;
-            animation: move-cosmic-aura 18s linear infinite; z-index: -1;
+            opacity: 0.35;
+            animation: move-cosmic-aura 15s linear infinite; z-index: -1;
         }
         @keyframes move-cosmic-aura {
             0% { background-position: 0 0, 30px 30px, 70px 110px; }
@@ -41,8 +41,8 @@
         }
 
         .main-title { 
-            font-family: 'Bangers', cursive; font-size: 34px; 
-            color: var(--cyan-glow); text-shadow: 0 0 20px var(--cyan-glow); margin-top: 25px;
+            font-family: 'Bangers', cursive; font-size: 36px; 
+            color: var(--cyan-glow); text-shadow: 0 0 25px var(--cyan-glow); margin-top: 30px;
             text-transform: uppercase; letter-spacing: 3px;
         }
 
@@ -50,60 +50,60 @@
 
         /* --- COLORFUL BOXES STYLE --- */
         .nav-card, .item-card {
-            width: 100%; border-radius: 20px; padding: 18px;
+            width: 100%; border-radius: 20px; padding: 20px;
             display: flex; justify-content: space-between; align-items: center;
-            border: 1px solid rgba(255,255,255,0.1); margin-bottom: 12px;
-            backdrop-filter: blur(10px); box-sizing: border-box;
+            border: 1px solid rgba(255,255,255,0.15); margin-bottom: 15px;
+            backdrop-filter: blur(15px); box-sizing: border-box;
         }
 
-        .card-blue { background: linear-gradient(135deg, rgba(0,255,255,0.15), #0a0a0a); border-left: 5px solid #00ffff; }
-        .card-orange { background: linear-gradient(135deg, rgba(255,140,0,0.15), #0a0a0a); border-left: 5px solid #ff8c00; }
-        .card-yellow { background: linear-gradient(135deg, rgba(255,215,0,0.15), #0a0a0a); border-left: 5px solid #ffd700; }
-        .card-grey { background: linear-gradient(135deg, rgba(169,169,169,0.15), #0a0a0a); border-left: 5px solid #a9a9a9; }
-        .card-purple { background: linear-gradient(135deg, rgba(147,112,219,0.15), #0a0a0a); border-left: 5px solid #9370db; }
+        .card-blue { background: linear-gradient(135deg, rgba(0,255,255,0.2), #050505); border-left: 6px solid #00ffff; }
+        .card-orange { background: linear-gradient(135deg, rgba(255,140,0,0.2), #050505); border-left: 6px solid #ff8c00; }
+        .card-yellow { background: linear-gradient(135deg, rgba(255,215,0,0.2), #050505); border-left: 6px solid #ffd700; }
+        .card-grey { background: linear-gradient(135deg, rgba(169,169,169,0.2), #050505); border-left: 6px solid #a9a9a9; }
+        .card-purple { background: linear-gradient(135deg, rgba(147,112,219,0.2), #050505); border-left: 6px solid #9370db; }
 
-        .menu-container { width: 92%; margin-top: 30px; }
+        .menu-container { width: 92%; margin-top: 35px; }
 
         /* --- BOTTOM BACK BUTTON --- */
-        .bottom-nav { position: fixed; bottom: 25px; width: 100%; display: flex; justify-content: center; z-index: 4000; pointer-events: none; }
+        .bottom-nav { position: fixed; bottom: 25px; width: 100%; display: flex; justify-content: center; z-index: 5000; pointer-events: none; }
         .back-btn-float {
             pointer-events: auto; font-family: 'Orbitron', sans-serif;
-            background: rgba(0, 0, 0, 0.9); color: var(--cyan-glow);
-            border: 2px solid var(--cyan-glow); padding: 12px 35px; border-radius: 30px;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.6); font-weight: 900;
+            background: rgba(0, 0, 0, 0.95); color: var(--cyan-glow);
+            border: 2px solid var(--cyan-glow); padding: 14px 40px; border-radius: 40px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.7); font-weight: 900;
             display: none; cursor: pointer; text-transform: uppercase;
         }
 
-        .img-circle { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--cyan-glow); box-shadow: 0 0 25px var(--cyan-glow); object-fit: cover; }
-        .list-icon { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--cyan-glow); box-shadow: 0 0 10px rgba(0,255,255,0.4); }
+        .img-circle { width: 125px; height: 125px; border-radius: 50%; border: 4px solid var(--cyan-glow); box-shadow: 0 0 30px var(--cyan-glow); object-fit: cover; }
+        .list-icon { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; border: 2.5px solid var(--cyan-glow); box-shadow: 0 0 15px rgba(0,255,255,0.5); }
 
-        #details, #sub-details { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); z-index: 2500; overflow-y: auto; padding-top: 25px; }
+        #details, #sub-details { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 2500; overflow-y: auto; padding-top: 30px; }
 
-        .card-info { flex: 1; margin-left: 15px; }
-        .card-info h4 { font-family: 'Orbitron', sans-serif; margin: 0; font-size: 15px; color: #fff; }
-        .card-info p { margin: 4px 0 10px; font-size: 11px; color: var(--text-dim); }
+        .card-info { flex: 1; margin-left: 18px; }
+        .card-info h4 { font-family: 'Orbitron', sans-serif; margin: 0; font-size: 17px; color: #fff; }
+        .card-info p { margin: 5px 0 12px; font-size: 12px; color: var(--text-dim); }
 
-        .btn-cyan { font-family: 'Orbitron', sans-serif; background: var(--cyan-glow); color: #000; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 10px; box-shadow: 0 0 10px rgba(0,255,255,0.4); text-transform: uppercase; text-decoration: none; }
+        .btn-cyan { font-family: 'Orbitron', sans-serif; background: var(--cyan-glow); color: #000; border: none; padding: 10px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 11px; box-shadow: 0 0 15px rgba(0,255,255,0.5); text-transform: uppercase; text-decoration: none; display: inline-block; }
     </style>
 </head>
 <body>
 
-    <div class="profile-section" style="text-align: center; margin-top: 30px;">
+    <div class="profile-section" style="text-align: center; margin-top: 35px;">
         <img src="network.jpg" class="img-circle">
         <div class="main-title">TEMPEST NETWORK</div>
     </div>
 
     <div class="menu-container">
         <div class="nav-card card-blue">
-            <div><h3>📡 CHANNELS</h3><p style="color:#999; font-size:11px;">Update Hubs</p></div>
+            <div><h3>📡 CHANNELS</h3><p style="color:#bbb; font-size:12px;">Join Anime Hubs</p></div>
             <button class="btn-cyan" onclick="openSec('CHANNELS')">SHOW</button>
         </div>
         <div class="nav-card card-purple">
-            <div><h3>🤖 MY BOTS</h3><p style="color:#999; font-size:11px;">Tools & AI</p></div>
+            <div><h3>🤖 MY BOTS</h3><p style="color:#bbb; font-size:12px;">Tools & AI</p></div>
             <button class="btn-cyan" onclick="openSec('BOTS')">SHOW</button>
         </div>
         <div class="nav-card card-orange">
-            <div><h3>👥 OUR TEAM</h3><p style="color:#999; font-size:11px;">Creators</p></div>
+            <div><h3>👥 OUR TEAM</h3><p style="color:#bbb; font-size:12px;">Creators</p></div>
             <button class="btn-cyan" onclick="openSec('TEAM')">SHOW</button>
         </div>
     </div>
@@ -111,12 +111,12 @@
     <div class="bottom-nav"><button id="globalBackBtn" class="back-btn-float" onclick="smartBack()">← BACK TO MENU</button></div>
 
     <div id="details">
-        <h2 id="det-title" style="margin-left:22px; color: var(--cyan-glow); font-family:Orbitron;"></h2>
+        <h2 id="det-title" style="margin-left:25px; color: var(--cyan-glow); font-family:Orbitron;"></h2>
         <div id="det-body"></div>
     </div>
 
     <div id="sub-details">
-        <h2 id="sub-det-title" style="margin-left:22px; color: var(--cyan-glow); font-family:Orbitron;"></h2>
+        <h2 id="sub-det-title" style="margin-left:25px; color: var(--cyan-glow); font-family:Orbitron;"></h2>
         <div id="sub-det-body"></div>
     </div>
 
@@ -140,9 +140,9 @@
 
             if(type === 'CHANNELS') {
                 body.innerHTML = `
-                    <div class="item-card card-blue"><img src="${pics.ongoing}" class="list-icon"><div class="card-info"><h4>Ongoing Anime</h4><a href="https://t.me/+mr5SZGOlW0U4YmQ1" class="btn-cyan">JOIN</a></div></div>
-                    <div class="item-card card-blue"><img src="${pics.tempest_index}" class="list-icon"><div class="card-info"><h4>Tempest Index</h4><a href="https://t.me/+WevEPT5r7K1lNjY1" class="btn-cyan">JOIN</a></div></div>
-                    <div class="item-card card-blue"><img src="${pics.tempest_main}" class="list-icon"><div class="card-info"><h4>Tempest Main</h4><a href="https://t.me/tempest_main" class="btn-cyan">JOIN</a></div></div>
+                    <div class="item-card card-blue"><img src="${pics.ongoing}" class="list-icon"><div class="card-info"><h4>Ongoing Anime</h4><a href="https://t.me/+mr5SZGOlW0U4YmQ1" class="btn-cyan" target="_blank">JOIN</a></div></div>
+                    <div class="item-card card-blue"><img src="${pics.tempest_index}" class="list-icon"><div class="card-info"><h4>Tempest Index</h4><a href="https://t.me/+WevEPT5r7K1lNjY1" class="btn-cyan" target="_blank">JOIN</a></div></div>
+                    <div class="item-card card-blue"><img src="${pics.tempest_main}" class="list-icon"><div class="card-info"><h4>Tempest Main</h4><a href="https://t.me/tempest_main" class="btn-cyan" target="_blank">JOIN</a></div></div>
                 `;
             } else if(type === 'TEAM') {
                 body.innerHTML = `
@@ -164,13 +164,13 @@
             const sub = document.getElementById('sub-details');
             const body = document.getElementById('sub-det-body');
             document.getElementById('sub-det-title').innerText = name + " SOCIALS";
-            let color = name === 'GOKU' ? 'card-orange' : (name === 'NARUTO' ? 'card-yellow' : (name === 'KAKASHI' ? 'card-grey' : 'card-blue'));
+            let color = name === 'GOKU' ? 'card-orange' : (name === 'NARUTO' ? 'card-yellow' : (name === 'KAKASHI' ? 'card-grey' : (name === 'SMOKEY' ? 'card-purple' : 'card-blue')));
             
-            let html = `<div class="item-card ${color}"><img src="${pics.tg_icon}" class="list-icon"><div class="card-info"><h4>Telegram</h4><button class="btn-cyan" onclick="openSpecificId('${name}_TG')">VIEW ID</button></div></div>`;
+            // Telegram Card
+            let html = `<div class="item-card ${color}"><img src="${pics.tg_icon}" class="list-icon"><div class="card-info"><h4>Telegram</h4><p>Contact On TG</p><button class="btn-cyan" onclick="openSpecificId('${name}_TG')">VIEW ID</button></div></div>`;
             
-            if(name === 'KAKASHI') {
-                html += `<div class="item-card card-purple"><img src="${pics.ig_icon}" class="list-icon"><div class="card-info"><h4>Instagram</h4><button class="btn-cyan" onclick="openSpecificId('KAKASHI_IG')">VIEW ID</button></div></div>`;
-            }
+            // Instagram Card (Sabke liye enabled)
+            html += `<div class="item-card card-purple"><img src="${pics.ig_icon}" class="list-icon"><div class="card-info"><h4>Instagram</h4><p>Follow On Insta</p><button class="btn-cyan" onclick="openSpecificId('${name}_IG')">VIEW ID</button></div></div>`;
             
             body.innerHTML = html;
             sub.style.display = 'block';
@@ -180,24 +180,30 @@
             const body = document.getElementById('sub-det-body');
             document.getElementById('sub-det-title').innerText = "ID DETAILS";
             
+            // Telegram IDs
             if(type === 'KAKASHI_TG') body.innerHTML = `<div class="item-card card-grey"><img src="${pics.kakashi}" class="list-icon"><div class="card-info"><h4>Kakashi Main</h4><p>@Thesoul_xD</p><a href="https://t.me/Thesoul_xD" class="btn-cyan">MSG</a></div></div>`;
-            else if(type === 'KAKASHI_IG') body.innerHTML = `<div class="item-card card-purple"><img src="${pics.ig_icon}" class="list-icon"><div class="card-info"><h4>Instagram</h4><p>@half_10053</p><a href="https://instagram.com/half_10053" class="btn-cyan">OPEN</a></div></div>`;
             else if(type === 'AKIRA_TG') body.innerHTML = `<div class="item-card card-blue"><img src="${pics.akira}" class="list-icon"><div class="card-info"><h4>Akira ID</h4><p>@MightyEmperor</p><a href="https://t.me/MightyEmperor" class="btn-cyan">MSG</a></div></div>`;
             else if(type === 'GOKU_TG') body.innerHTML = `<div class="item-card card-orange"><img src="${pics.goku}" class="list-icon"><div class="card-info"><h4>Goku ID</h4><p>@goku_shinobi</p><a href="https://t.me/goku_shinobi" class="btn-cyan">MSG</a></div></div>`;
             else if(type === 'NARUTO_TG') body.innerHTML = `<div class="item-card card-yellow"><img src="${pics.naruto}" class="list-icon"><div class="card-info"><h4>Naruto ID</h4><p>@qtflake</p><a href="https://t.me/qtflake" class="btn-cyan">MSG</a></div></div>`;
             else if(type === 'SMOKEY_TG') body.innerHTML = `<div class="item-card card-purple"><img src="${pics.smokey}" class="list-icon"><div class="card-info"><h4>Smokey ID</h4><p>@con_dom</p><a href="https://t.me/con_dom" class="btn-cyan">MSG</a></div></div>`;
+            
+            // Instagram IDs (Yahan aap sabke alag insta link daal sakte hain)
+            else if(type.includes('_IG')) {
+                let instaUser = "@half_10053"; // Default
+                let instaLink = "https://instagram.com/half_10053";
+                
+                // Example: Agar Naruto ka alag hai toh yahan logic daal sakte hain
+                if(type === 'NARUTO_IG') { instaUser = "@naruto_insta"; instaLink = "https://instagram.com/naruto"; }
+                
+                body.innerHTML = `<div class="item-card card-purple"><img src="${pics.ig_icon}" class="list-icon"><div class="card-info"><h4>Instagram</h4><p>${instaUser}</p><a href="${instaLink}" class="btn-cyan" target="_blank">OPEN</a></div></div>`;
+            }
         }
 
         function smartBack() {
             const sub = document.getElementById('sub-details');
             const det = document.getElementById('details');
             if(sub.style.display === 'block') {
-                if(document.getElementById('sub-det-title').innerText === "ID DETAILS") {
-                    // Title check is tricky, so just hiding sub for now
-                    sub.style.display = 'none'; 
-                } else {
-                    sub.style.display = 'none';
-                }
+                sub.style.display = 'none';
             } else {
                 det.style.display = 'none';
                 backBtn.style.display = 'none';
