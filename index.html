@@ -50,7 +50,7 @@
             border: 3px solid var(--cyan-glow); box-shadow: 0 0 25px var(--cyan-glow);
             object-fit: cover; margin-bottom: 15px;
         }
-        .main-title { font-size: 24px; font-weight: bold; color: var(--cyan-glow); letter-spacing: 2px; text-shadow: 0 0 10px var(--cyan-glow); }
+        .main-title { font-size: 24px; font-weight: bold; color: var(--cyan-glow); letter-spacing: 2px; text-shadow: 0 0 10px var(--cyan-glow); text-transform: uppercase; }
 
         /* Menu */
         .menu-container { width: 92%; margin-top: 30px; display: flex; flex-direction: column; gap: 15px; }
@@ -66,7 +66,7 @@
             z-index: 2500; overflow-y: auto;
         }
 
-        /* Cards & Socials */
+        /* Cards Style */
         .item-card {
             background: var(--glass); border-radius: 15px; padding: 18px;
             margin: 12px 18px; display: flex; align-items: center; gap: 15px;
@@ -74,17 +74,17 @@
         }
         .card-icon { width: 65px; height: 65px; border-radius: 12px; object-fit: cover; border: 1px solid var(--cyan-glow); }
         .card-info { flex: 1; }
-        .card-info h4 { margin: 0; font-size: 18px; color: #fff; }
+        .card-info h4 { margin: 0; font-size: 18px; color: #fff; text-transform: uppercase; }
         .card-info p { margin: 4px 0 10px; font-size: 12px; color: var(--text-dim); }
 
         .btn-cyan {
             background: var(--cyan-glow); color: #000; border: none;
             padding: 9px 18px; border-radius: 8px; font-weight: bold;
             text-decoration: none; font-size: 12px; display: inline-block;
-            text-transform: uppercase; text-align: center;
+            text-transform: uppercase; text-align: center; box-shadow: 0 0 10px rgba(0,255,255,0.3);
         }
 
-        h2 { margin: 20px 22px; font-size: 26px; color: var(--cyan-glow); }
+        h2 { margin: 20px 22px; font-size: 24px; color: var(--cyan-glow); text-transform: uppercase; }
 
     </style>
 </head>
@@ -97,11 +97,11 @@
 
     <div class="menu-container">
         <div class="nav-card">
-            <div><h3 style="margin:0;">📡 CHANNELS</h3><p style="color:var(--text-dim); font-size:12px;">Join Hubs</p></div>
+            <div><h3 style="margin:0;">📡 CHANNELS</h3><p style="color:var(--text-dim); font-size:12px;">Update Hubs</p></div>
             <button class="btn-cyan" onclick="openSec('CHANNELS')">SHOW</button>
         </div>
         <div class="nav-card">
-            <div><h3 style="margin:0;">🤖 MY BOTS</h3><p style="color:var(--text-dim); font-size:12px;">Tools & Fun</p></div>
+            <div><h3 style="margin:0;">🤖 MY BOTS</h3><p style="color:var(--text-dim); font-size:12px;">Tools & Automation</p></div>
             <button class="btn-cyan" onclick="openSec('BOTS')">SHOW</button>
         </div>
         <div class="nav-card">
@@ -127,11 +127,11 @@
         tg.expand();
 
         const myImg = "https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg";
+        
+        // वर्किंग आइकन्स
         const icons = {
-            tg: "https://telegra.ph/file/5a52d27448821908a8d13.png",
-            ig: "https://telegra.ph/file/0c9e6d08159b3d09a5b3a.png",
-            gh: "https://telegra.ph/file/13b86064f26b527783967.png",
-            dc: "https://telegra.ph/file/16d7a1240c0583489814a.png"
+            tg: "https://graph.org/file/f0732863709b1f7f50a8b.png",
+            ig: "https://graph.org/file/20499092827bc521f7c22.png"
         };
 
         function openSec(type) {
@@ -144,54 +144,68 @@
                 body.innerHTML = `
                     <div class="item-card">
                         <img src="${myImg}" class="card-icon">
-                        <div class="card-info"><h4>Ongoing Anime</h4><p>Latest Hindi Episodes</p><a href="https://t.me/+mr5SZGOlW0U4YmQ1" class="btn-cyan">JOIN</a></div>
-                    </div>
-                    <div class="item-card">
-                        <img src="${myImg}" class="card-icon">
-                        <div class="card-info"><h4>Tempest Index</h4><p>All Anime List</p><a href="https://t.me/+WevEPT5r7K1lNjY1" class="btn-cyan">JOIN</a></div>
-                    </div>
-                `;
-            } else if(type === 'BOTS') {
-                body.innerHTML = `
-                    <div class="item-card">
-                        <img src="${myImg}" class="card-icon">
-                        <div class="card-info"><h4>Raphael Bot</h4><p>Best AI Manager</p><a href="https://t.me/tempest_animeresercher_bot" class="btn-cyan">OPEN</a></div>
+                        <div class="card-info"><h4>Ongoing Anime</h4><p>Latest Hindi Episodes</p><a href="https://t.me/+mr5SZGOlW0U4YmQ1" class="btn-cyan" target="_blank">JOIN</a></div>
                     </div>
                 `;
             } else if(type === 'TEAM') {
                 body.innerHTML = `
                     <div class="item-card">
                         <img src="${myImg}" class="card-icon">
-                        <div class="card-info"><h4>KAKASHI</h4><p>Founder</p><button class="btn-cyan" onclick="openKakashi()">LINKS</button></div>
+                        <div class="card-info"><h4>KAKASHI</h4><p>Founder</p><button class="btn-cyan" onclick="openKakashiSocials()">SOCIALS</button></div>
                     </div>
                     <div class="item-card">
                         <img src="${myImg}" class="card-icon">
-                        <div class="card-info"><h4>AKIRA</h4><p>Lead Dev</p><a href="https://t.me/MightyEmperor" class="btn-cyan">CHAT</a></div>
+                        <div class="card-info"><h4>AKIRA</h4><p>Lead Developer</p><a href="https://t.me/MightyEmperor" class="btn-cyan" target="_blank">CHAT</a></div>
+                    </div>
+                `;
+            } else if(type === 'BOTS') {
+                body.innerHTML = `
+                    <div class="item-card">
+                        <img src="${myImg}" class="card-icon">
+                        <div class="card-info"><h4>Raphael Bot</h4><p>AI Manager</p><a href="https://t.me/tempest_animeresercher_bot" class="btn-cyan" target="_blank">OPEN</a></div>
                     </div>
                 `;
             }
             d.style.display = 'block';
         }
 
-        function openKakashi() {
+        // KAKASHI'S SOCIAL PAGE
+        function openKakashiSocials() {
             const sub = document.getElementById('sub-details');
             document.getElementById('sub-det-title').innerText = "KAKASHI LINKS";
             document.getElementById('sub-det-body').innerHTML = `
                 <div class="item-card" onclick="openIdList()">
-                    <img src="${icons.tg}" style="width:40px">
-                    <div class="card-info"><h4>TELEGRAM</h4><p>Official IDs List</p></div>
+                    <img src="${icons.tg}" style="width:45px; height:45px; object-fit:contain;">
+                    <div class="card-info"><h4>TELEGRAM</h4><p>View all official IDs</p></div>
                 </div>
-                <div class="item-card" onclick="window.open('https://instagram.com/Thesoul_xD')">
-                    <img src="${icons.ig}" style="width:40px">
-                    <div class="card-info"><h4>INSTAGRAM</h4><p>Follow Me</p></div>
+                <div class="item-card" onclick="window.open('https://instagram.com/Thesoul_xD', '_blank')">
+                    <img src="${icons.ig}" style="width:45px; height:45px; object-fit:contain;">
+                    <div class="card-info"><h4>INSTAGRAM</h4><p>Follow on Insta</p></div>
                 </div>
             `;
             sub.style.display = 'block';
         }
 
+        // KAKASHI'S TELEGRAM ID LIST (अब कोई पॉप-अप नहीं, असली लिस्ट खुलेगी)
         function openIdList() {
-            // यहाँ आप चाहें तो एक और लेयर जोड़ सकते हैं या सीधे IDs दिखा सकते हैं
-            alert("Main: @Thesoul_xD\nSupport: @Kakashi_Support");
+            const body = document.getElementById('sub-det-body');
+            document.getElementById('sub-det-title').innerText = "TELEGRAM IDS";
+            body.innerHTML = `
+                <div class="item-card">
+                    <div class="card-info">
+                        <h4>Main ID</h4>
+                        <p>@Thesoul_xD</p>
+                        <a href="https://t.me/Thesoul_xD" class="btn-cyan" target="_blank">SEND MESSAGE</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="card-info">
+                        <h4>Support ID</h4>
+                        <p>@Kakashi_Support</p>
+                        <a href="https://t.me/Thesoul_xD" class="btn-cyan" target="_blank">SEND MESSAGE</a>
+                    </div>
+                </div>
+            `;
         }
 
         function closeSec() { document.getElementById('details').style.display = 'none'; }
