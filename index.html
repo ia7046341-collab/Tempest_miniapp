@@ -16,125 +16,52 @@
 
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-            padding-bottom: 50px;
+            margin: 0; background-color: var(--bg-color); color: var(--text-main);
+            display: flex; flex-direction: column; align-items: center; padding-bottom: 50px;
         }
 
         /* Profile Section */
-        .profile-section {
-            margin-top: 40px;
-            text-align: center;
-        }
-
+        .profile-section { margin-top: 40px; text-align: center; }
         .profile-circle {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 3px solid var(--cyan-glow);
-            box-shadow: 0 0 20px var(--cyan-glow);
-            object-fit: cover;
-            margin-bottom: 15px;
+            width: 120px; height: 120px; border-radius: 50%;
+            border: 3px solid var(--cyan-glow); box-shadow: 0 0 20px var(--cyan-glow);
+            object-fit: cover; margin-bottom: 15px;
         }
+        .user-name { font-size: 24px; font-weight: bold; color: var(--cyan-glow); text-shadow: 0 0 10px var(--cyan-glow); text-transform: uppercase; }
 
-        .user-name {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--cyan-glow);
-            text-shadow: 0 0 10px var(--cyan-glow);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Menu Container */
-        .menu-container {
-            width: 92%;
-            margin-top: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        /* Main Menu Cards */
+        /* Menu */
+        .menu-container { width: 92%; margin-top: 30px; display: flex; flex-direction: column; gap: 15px; }
         .nav-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 20px;
-            border: 1px solid #1a1a1a;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: var(--card-bg); border-radius: 15px; padding: 20px;
+            border: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center;
         }
 
-        /* Details Overlay */
+        /* Overlay */
         #details {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: var(--bg-color);
-            z-index: 1000;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow-y: auto;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color); z-index: 1000; padding: 20px; box-sizing: border-box; overflow-y: auto;
         }
+        .back-link { color: var(--cyan-glow); font-weight: bold; cursor: pointer; display: inline-block; margin-bottom: 25px; }
 
-        .back-link {
-            color: var(--cyan-glow);
-            font-weight: bold;
-            cursor: pointer;
-            display: inline-block;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            font-size: 14px;
-        }
-
-        /* Sub-Cards */
+        /* Sub-Cards with Images (Main logic here) */
         .sub-card {
-            background: #111;
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 15px;
-            border: 1px solid #222;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            background: #111; border-radius: 12px; padding: 15px; margin-bottom: 15px;
+            border: 1px solid #222; display: flex; align-items: center; gap: 15px;
         }
+        .card-img {
+            width: 60px; height: 60px; border-radius: 10px; object-fit: cover;
+            border: 1px solid var(--cyan-glow);
+        }
+        .card-content { flex: 1; }
+        .card-content h4 { margin: 0; color: var(--text-main); font-size: 16px; text-transform: uppercase; }
+        .card-content p { margin: 3px 0 8px; font-size: 12px; color: var(--text-dim); }
 
-        .sub-card h4 {
-            margin: 0;
-            color: var(--text-main);
-            font-size: 17px;
-            text-transform: uppercase;
+        .join-btn {
+            background-color: var(--cyan-glow); color: #000; border: none;
+            padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 11px;
+            text-transform: uppercase; text-decoration: none; display: inline-block;
         }
-
-        .sub-card p {
-            margin: 0;
-            font-size: 13px;
-            color: var(--text-dim);
-        }
-
-        /* Cyan Buttons */
-        .action-btn, .join-btn {
-            background-color: var(--cyan-glow);
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 13px;
-            cursor: pointer;
-            text-transform: uppercase;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-        }
+        .action-btn { background-color: var(--cyan-glow); color: #000; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -146,26 +73,15 @@
 
     <div class="menu-container">
         <div class="nav-card">
-            <div style="flex:1">
-                <h3 style="margin:0; font-size:18px;">📡 CHANNELS</h3>
-                <p style="color:var(--text-dim); font-size:12px; margin-top:5px;">Join our update hubs</p>
-            </div>
+            <div style="flex:1"><h3>📡 CHANNELS</h3><p style="color:var(--text-dim); font-size:12px;">Join our update hubs</p></div>
             <button class="action-btn" onclick="openSec('CHANNELS')">SHOW</button>
         </div>
-
         <div class="nav-card">
-            <div style="flex:1">
-                <h3 style="margin:0; font-size:18px;">🤖 MY BOTS</h3>
-                <p style="color:var(--text-dim); font-size:12px; margin-top:5px;">Automation & Tools</p>
-            </div>
+            <div style="flex:1"><h3>🤖 MY BOTS</h3><p style="color:var(--text-dim); font-size:12px;">Automation & Tools</p></div>
             <button class="action-btn" onclick="openSec('BOTS')">SHOW</button>
         </div>
-
         <div class="nav-card">
-            <div style="flex:1">
-                <h3 style="margin:0; font-size:18px;">👥 OUR TEAM</h3>
-                <p style="color:var(--text-dim); font-size:12px; margin-top:5px;">Meet the creators</p>
-            </div>
+            <div style="flex:1"><h3>👥 OUR TEAM</h3><p style="color:var(--text-dim); font-size:12px;">Meet the creators</p></div>
             <button class="action-btn" onclick="openSec('TEAM')">SHOW</button>
         </div>
     </div>
@@ -184,60 +100,50 @@
             const d = document.getElementById('details');
             const title = document.getElementById('det-title');
             const body = document.getElementById('det-body');
-            
             title.innerText = type;
 
             if(type === 'CHANNELS') {
                 body.innerHTML = `
                     <div class="sub-card">
-                        <h4>Anime Ongoing</h4>
-                        <p>Latest ongoing episodes in Hindi/English.</p>
-                        <a href="https://t.me/+mr5SZGOlW0U4YmQ1" class="join-btn" target="_blank">JOIN CHANNEL</a>
+                        <img src="https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg" class="card-img">
+                        <div class="card-content">
+                            <h4>Anime Ongoing</h4>
+                            <p>Latest ongoing episodes in Hindi.</p>
+                            <a href="https://t.me/+mr5SZGOlW0U4YmQ1" class="join-btn" target="_blank">JOIN</a>
+                        </div>
                     </div>
                     <div class="sub-card">
-                        <h4>Tempest Index</h4>
-                        <p>Our complete anime database index.</p>
-                        <a href="https://t.me/+WevEPT5r7K1lNjY1" class="join-btn" target="_blank">JOIN CHANNEL</a>
-                    </div>
-                    <div class="sub-card">
-                        <h4>Tempest Main</h4>
-                        <p>Primary updates and community news.</p>
-                        <a href="https://t.me/tempest_main" class="join-btn" target="_blank">JOIN CHANNEL</a>
-                    </div>
-                `;
-            } else if(type === 'BOTS') {
-                body.innerHTML = `
-                    <div class="sub-card">
-                        <h4>Raphael Bot</h4>
-                        <p>Ultimate AI assistant for managing files.</p>
-                        <a href="https://t.me/tempest_animeresercher_bot" class="join-btn" target="_blank">OPEN BOT</a>
+                        <img src="https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg" class="card-img">
+                        <div class="card-content">
+                            <h4>Tempest Index</h4>
+                            <p>Complete anime database index.</p>
+                            <a href="https://t.me/+WevEPT5r7K1lNjY1" class="join-btn" target="_blank">JOIN</a>
+                        </div>
                     </div>
                 `;
             } else if(type === 'TEAM') {
                 body.innerHTML = `
                     <div class="sub-card">
-                        <h4>FOUNDER - KAKASHI</h4>
-                        <p>The vision behind Tempest Network.</p>
-                        <a href="https://t.me/Thesoul_xD" class="join-btn" target="_blank">CONTACT</a>
+                        <img src="https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg" class="card-img">
+                        <div class="card-content">
+                            <h4>KAKASHI</h4>
+                            <p>Founder & Visionary</p>
+                            <a href="https://t.me/Thesoul_xD" class="join-btn" target="_blank">CHAT</a>
+                        </div>
                     </div>
                     <div class="sub-card">
-                        <h4>DEV - AKIRA</h4>
-                        <p>Leading the technical development.</p>
-                        <a href="https://t.me/MightyEmperor" class="join-btn" target="_blank">CONTACT</a>
-                    </div>
-                    <div class="sub-card">
-                        <h4>CO-DEV - RAPHAEL AI</h4>
-                        <p>AI-powered assistant for smooth operations.</p>
-                        <a href="https://t.me/tempest_animeresercher_bot" class="join-btn" target="_blank">OPEN BOT</a>
+                        <img src="https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg" class="card-img">
+                        <div class="card-content">
+                            <h4>AKIRA</h4>
+                            <p>Lead Developer</p>
+                            <a href="https://t.me/MightyEmperor" class="join-btn" target="_blank">CHAT</a>
+                        </div>
                     </div>
                 `;
             }
             d.style.display = 'block';
         }
-
-        function closeSec() {
-            document.getElementById('details').style.display = 'none';
-        }
+        function closeSec() { document.getElementById('details').style.display = 'none'; }
     </script>
 </body>
 </html>
