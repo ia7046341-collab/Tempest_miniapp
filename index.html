@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tempest Network</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Orbitron:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-color: #000000;
@@ -16,11 +18,54 @@
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            margin: 0; background-color: var(--bg-color);
-            color: var(--text-main); display: flex;
-            flex-direction: column; align-items: center;
-            overflow-x: hidden; padding-bottom: 50px;
+            font-family: 'Poppins', sans-serif;
+            margin: 0; 
+            background-color: var(--bg-color);
+            color: var(--text-main); 
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            overflow-x: hidden; 
+            padding-bottom: 50px;
+            position: relative; /* एनीमेशन के लिए */
+        }
+
+        /* --- एनीमेटेड बैकग्राउंड (एनीमे ओरा) --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,0) 2px), /* छोटे सफ़ेद तारे */
+                radial-gradient(var(--cyan-glow), rgba(0,255,255,0) 1px); /* छोटे नीले ओरा कण */
+            background-size: 100px 100px, 60px 60px;
+            background-position: 0 0, 30px 30px;
+            opacity: 0.12; /* बहुत हल्का, ताकि टेक्स्ट पर असर न पड़े */
+            animation: move-aura 25s linear infinite; /* ओरा एनीमेशन */
+            z-index: -1; /* सब कुछ के पीछे */
+        }
+
+        @keyframes move-aura {
+            from { background-position: 0 0, 30px 30px; }
+            to { background-position: 500px 1000px, 400px 800px; } /* कणों को ऊपर तैरने देना */
+        }
+
+        /* --- बाकी ऐप का स्टाइल (वही रहेगा) --- */
+        .main-title { 
+            font-family: 'Bangers', cursive;
+            font-size: 32px; 
+            color: var(--cyan-glow); 
+            letter-spacing: 3px; 
+            text-shadow: 0 0 15px var(--cyan-glow);
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        h3, h2 {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .back-nav {
@@ -34,26 +79,28 @@
         }
 
         .back-btn-neon {
+            font-family: 'Orbitron', sans-serif;
             background: linear-gradient(45deg, #00ffff, #008080);
             color: #000; border: none;
             padding: 8px 20px; border-radius: 25px;
             font-weight: 900; font-size: 11px;
             box-shadow: 0 0 15px var(--cyan-glow);
-            cursor: pointer; text-transform: uppercase;
+            cursor: pointer;
         }
 
         .profile-section { margin-top: 30px; text-align: center; }
-        .profile-circle {
+        
+        .img-circle {
             width: 120px; height: 120px; border-radius: 50%;
             border: 3px solid var(--cyan-glow); box-shadow: 0 0 25px var(--cyan-glow);
-            object-fit: cover; margin-bottom: 15px;
+            object-fit: cover;
         }
-        .main-title { font-size: 24px; font-weight: bold; color: var(--cyan-glow); letter-spacing: 2px; text-shadow: 0 0 10px var(--cyan-glow); text-transform: uppercase; }
 
         .menu-container { width: 92%; margin-top: 30px; display: flex; flex-direction: column; gap: 15px; }
         .nav-card {
             background: var(--card-bg); border-radius: 18px; padding: 22px;
             border: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center;
+            backdrop-filter: blur(5px); /* बॉक्सेस के पीछे हल्का ब्लर */
         }
 
         #details, #sub-details {
@@ -67,52 +114,60 @@
             margin: 12px 18px; display: flex; align-items: center; gap: 15px;
             border: 1px solid #222;
         }
-        .card-icon { width: 65px; height: 65px; border-radius: 12px; object-fit: cover; border: 1px solid var(--cyan-glow); }
+        
+        .list-icon { 
+            width: 60px; height: 60px; border-radius: 50%; 
+            object-fit: cover; 
+            border: 2px solid var(--cyan-glow); 
+            box-shadow: 0 0 10px rgba(0,255,255,0.5);
+        }
+        
         .card-info { flex: 1; }
-        .card-info h4 { margin: 0; font-size: 18px; color: #fff; text-transform: uppercase; }
+        .card-info h4 { font-family: 'Orbitron', sans-serif; margin: 0; font-size: 16px; color: #fff; text-transform: uppercase; }
         .card-info p { margin: 4px 0 10px; font-size: 12px; color: var(--text-dim); }
 
         .btn-cyan {
+            font-family: 'Orbitron', sans-serif;
             background: var(--cyan-glow); color: #000; border: none;
             padding: 9px 18px; border-radius: 8px; font-weight: bold;
-            text-decoration: none; font-size: 12px; display: inline-block;
-            text-transform: uppercase; text-align: center; box-shadow: 0 0 10px rgba(0,255,255,0.3);
+            text-decoration: none; font-size: 11px; display: inline-block;
+            box-shadow: 0 0 10px rgba(0,255,255,0.3);
+            text-transform: uppercase;
         }
 
-        h2 { margin: 20px 22px; font-size: 24px; color: var(--cyan-glow); text-transform: uppercase; }
     </style>
 </head>
 <body>
 
     <div class="profile-section">
-        <img src="main.jpg" class="profile-circle">
+        <img src="main.jpg" class="img-circle">
         <div class="main-title">TEMPEST NETWORK</div>
     </div>
 
     <div class="menu-container">
         <div class="nav-card">
-            <div><h3 style="margin:0;">📡 CHANNELS</h3><p style="color:var(--text-dim); font-size:12px;">Update Hubs</p></div>
+            <div><h3>📡 CHANNELS</h3><p style="color:var(--text-dim); font-size:12px;">Update Hubs</p></div>
             <button class="btn-cyan" onclick="openSec('CHANNELS')">SHOW</button>
         </div>
         <div class="nav-card">
-            <div><h3 style="margin:0;">🤖 MY BOTS</h3><p style="color:var(--text-dim); font-size:12px;">Tools & Automation</p></div>
+            <div><h3>🤖 MY BOTS</h3><p style="color:var(--text-dim); font-size:12px;">Tools & Automation</p></div>
             <button class="btn-cyan" onclick="openSec('BOTS')">SHOW</button>
         </div>
         <div class="nav-card">
-            <div><h3 style="margin:0;">👥 OUR TEAM</h3><p style="color:var(--text-dim); font-size:12px;">The Creators</p></div>
+            <div><h3>👥 OUR TEAM</h3><p style="color:var(--text-dim); font-size:12px;">The Creators</p></div>
             <button class="btn-cyan" onclick="openSec('TEAM')">SHOW</button>
         </div>
     </div>
 
     <div id="details">
         <div class="back-nav"><button class="back-btn-neon" onclick="closeSec()">← BACK</button></div>
-        <h2 id="det-title"></h2>
+        <h2 id="det-title" style="margin-left:20px;"></h2>
         <div id="det-body"></div>
     </div>
 
     <div id="sub-details">
         <div class="back-nav"><button class="back-btn-neon" onclick="closeSubSec()">← BACK</button></div>
-        <h2 id="sub-det-title"></h2>
+        <h2 id="sub-det-title" style="margin-left:20px;"></h2>
         <div id="sub-det-body"></div>
     </div>
 
@@ -120,14 +175,15 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
 
-        // आपकी फाइलों के सीधे नाम (GitHub से)
         const pics = {
-            kakashi: "main.jpg", // Kakashi के लिए main.jpg
+            kakashi: "main.jpg",
             akira: "akira.jpg",
             naruto: "naruto.jpg",
             raphael: "raphael.jpg",
             ongoing: "ongoing.jpg",
-            tempest_index: "index.jpg"
+            tempest_index: "index.jpg",
+            tg_icon: "https://graph.org/file/c144ecb7bdfba77066953-b0f18969c0e6f48d8b.jpg",
+            ig_icon: "https://graph.org/file/70cb7dac798a886e14b63-49577b3801d340b295.jpg"
         };
 
         function openSec(type) {
@@ -139,33 +195,33 @@
             if(type === 'CHANNELS') {
                 body.innerHTML = `
                     <div class="item-card">
-                        <img src="${pics.ongoing}" class="card-icon">
+                        <img src="${pics.ongoing}" class="list-icon">
                         <div class="card-info"><h4>Ongoing Anime</h4><p>Latest Hindi Episodes</p><a href="https://t.me/+mr5SZGOlW0U4YmQ1" class="btn-cyan" target="_blank">JOIN</a></div>
                     </div>
                     <div class="item-card">
-                        <img src="${pics.tempest_index}" class="card-icon">
+                        <img src="${pics.tempest_index}" class="list-icon">
                         <div class="card-info"><h4>Tempest Index</h4><p>Complete Database</p><a href="https://t.me/+WevEPT5r7K1lNjY1" class="btn-cyan" target="_blank">JOIN</a></div>
                     </div>
                 `;
             } else if(type === 'TEAM') {
                 body.innerHTML = `
                     <div class="item-card">
-                        <img src="${pics.kakashi}" class="card-icon">
+                        <img src="${pics.kakashi}" class="list-icon">
                         <div class="card-info"><h4>KAKASHI</h4><p>Founder</p><button class="btn-cyan" onclick="openKakashiSocials()">SOCIALS</button></div>
                     </div>
                     <div class="item-card">
-                        <img src="${pics.akira}" class="card-icon">
+                        <img src="${pics.akira}" class="list-icon">
                         <div class="card-info"><h4>AKIRA</h4><p>Lead Developer</p><a href="https://t.me/MightyEmperor" class="btn-cyan" target="_blank">CHAT</a></div>
                     </div>
                     <div class="item-card">
-                        <img src="${pics.naruto}" class="card-icon">
+                        <img src="${pics.naruto}" class="list-icon">
                         <div class="card-info"><h4>NARUTO</h4><p>Team Member</p><a href="https://t.me/Thesoul_xD" class="btn-cyan" target="_blank">CHAT</a></div>
                     </div>
                 `;
             } else if(type === 'BOTS') {
                 body.innerHTML = `
                     <div class="item-card">
-                        <img src="${pics.raphael}" class="card-icon">
+                        <img src="${pics.raphael}" class="list-icon">
                         <div class="card-info"><h4>Raphael Bot</h4><p>AI Manager</p><a href="https://t.me/tempest_animeresercher_bot" class="btn-cyan" target="_blank">OPEN</a></div>
                     </div>
                 `;
@@ -175,12 +231,14 @@
 
         function openKakashiSocials() {
             const sub = document.getElementById('sub-details');
-            document.getElementById('sub-det-title').innerText = "KAKASHI LINKS";
+            document.getElementById('sub-det-title').innerText = "SOCIALS";
             document.getElementById('sub-det-body').innerHTML = `
                 <div class="item-card" onclick="openIdList()">
+                    <img src="${pics.tg_icon}" class="list-icon">
                     <div class="card-info"><h4>TELEGRAM</h4><p>Official IDs List</p></div>
                 </div>
                 <div class="item-card" onclick="window.open('https://instagram.com/Thesoul_xD', '_blank')">
+                    <img src="${pics.ig_icon}" class="list-icon">
                     <div class="card-info"><h4>INSTAGRAM</h4><p>Follow Me</p></div>
                 </div>
             `;
@@ -188,9 +246,8 @@
         }
 
         function openIdList() {
-            const body = document.getElementById('sub-det-body');
-            document.getElementById('sub-det-title').innerText = "TELEGRAM IDS";
-            body.innerHTML = `
+            document.getElementById('sub-det-title').innerText = "IDS";
+            document.getElementById('sub-det-body').innerHTML = `
                 <div class="item-card">
                     <div class="card-info"><h4>Main ID</h4><p>@Thesoul_xD</p><a href="https://t.me/Thesoul_xD" class="btn-cyan" target="_blank">MESSAGE</a></div>
                 </div>
@@ -199,7 +256,7 @@
 
         function closeSec() { document.getElementById('details').style.display = 'none'; }
         function closeSubSec() { 
-            if(document.getElementById('sub-det-title').innerText === "TELEGRAM IDS") {
+            if(document.getElementById('sub-det-title').innerText === "IDS") {
                 openKakashiSocials();
             } else {
                 document.getElementById('sub-details').style.display = 'none'; 
