@@ -12,89 +12,127 @@
             --cyan-glow: #00ffff;
             --text-main: #ffffff;
             --text-dim: #999999;
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
-            margin: 0; background-color: var(--bg-color); color: var(--text-main);
-            display: flex; flex-direction: column; align-items: center; padding-bottom: 50px;
+            margin: 0; background-color: var(--bg-color);
+            color: var(--text-main); display: flex;
+            flex-direction: column; align-items: center;
+            overflow-x: hidden; padding-bottom: 50px;
         }
 
-        /* Profile Section */
-        .profile-section { margin-top: 40px; text-align: center; }
+        /* STYLISH BACK NAV */
+        .back-nav {
+            position: sticky; top: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(15px);
+            padding: 12px 20px; z-index: 3000;
+            display: flex; align-items: center;
+            border-bottom: 1px solid #222;
+            box-sizing: border-box;
+        }
+
+        .back-btn-neon {
+            background: linear-gradient(45deg, #00ffff, #008080);
+            color: #000; border: none;
+            padding: 8px 20px; border-radius: 25px;
+            font-weight: 900; font-size: 11px;
+            box-shadow: 0 0 15px var(--cyan-glow);
+            cursor: pointer; text-transform: uppercase;
+        }
+
+        /* Profile */
+        .profile-section { margin-top: 30px; text-align: center; }
         .profile-circle {
             width: 120px; height: 120px; border-radius: 50%;
-            border: 3px solid var(--cyan-glow); box-shadow: 0 0 20px var(--cyan-glow);
+            border: 3px solid var(--cyan-glow); box-shadow: 0 0 25px var(--cyan-glow);
             object-fit: cover; margin-bottom: 15px;
         }
-        .user-name { font-size: 24px; font-weight: bold; color: var(--cyan-glow); text-shadow: 0 0 10px var(--cyan-glow); text-transform: uppercase; }
+        .main-title { font-size: 24px; font-weight: bold; color: var(--cyan-glow); letter-spacing: 2px; text-shadow: 0 0 10px var(--cyan-glow); }
 
         /* Menu */
         .menu-container { width: 92%; margin-top: 30px; display: flex; flex-direction: column; gap: 15px; }
         .nav-card {
-            background: var(--card-bg); border-radius: 15px; padding: 20px;
+            background: var(--card-bg); border-radius: 18px; padding: 22px;
             border: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center;
         }
 
-        /* Overlay */
-        #details {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-color); z-index: 1000; padding: 20px; box-sizing: border-box; overflow-y: auto;
+        /* Overlays */
+        #details, #sub-details {
+            display: none; position: fixed; top: 0; left: 0; 
+            width: 100%; height: 100%; background: #000;
+            z-index: 2500; overflow-y: auto;
         }
-        .back-link { color: var(--cyan-glow); font-weight: bold; cursor: pointer; display: inline-block; margin-bottom: 25px; }
 
-        /* Sub-Cards with Images (Main logic here) */
-        .sub-card {
-            background: #111; border-radius: 12px; padding: 15px; margin-bottom: 15px;
-            border: 1px solid #222; display: flex; align-items: center; gap: 15px;
+        /* Cards & Socials */
+        .item-card {
+            background: var(--glass); border-radius: 15px; padding: 18px;
+            margin: 12px 18px; display: flex; align-items: center; gap: 15px;
+            border: 1px solid #222;
         }
-        .card-img {
-            width: 60px; height: 60px; border-radius: 10px; object-fit: cover;
-            border: 1px solid var(--cyan-glow);
-        }
-        .card-content { flex: 1; }
-        .card-content h4 { margin: 0; color: var(--text-main); font-size: 16px; text-transform: uppercase; }
-        .card-content p { margin: 3px 0 8px; font-size: 12px; color: var(--text-dim); }
+        .card-icon { width: 65px; height: 65px; border-radius: 12px; object-fit: cover; border: 1px solid var(--cyan-glow); }
+        .card-info { flex: 1; }
+        .card-info h4 { margin: 0; font-size: 18px; color: #fff; }
+        .card-info p { margin: 4px 0 10px; font-size: 12px; color: var(--text-dim); }
 
-        .join-btn {
-            background-color: var(--cyan-glow); color: #000; border: none;
-            padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 11px;
-            text-transform: uppercase; text-decoration: none; display: inline-block;
+        .btn-cyan {
+            background: var(--cyan-glow); color: #000; border: none;
+            padding: 9px 18px; border-radius: 8px; font-weight: bold;
+            text-decoration: none; font-size: 12px; display: inline-block;
+            text-transform: uppercase; text-align: center;
         }
-        .action-btn { background-color: var(--cyan-glow); color: #000; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; }
+
+        h2 { margin: 20px 22px; font-size: 26px; color: var(--cyan-glow); }
+
     </style>
 </head>
 <body>
 
     <div class="profile-section">
-        <img src="https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg" alt="Profile" class="profile-circle">
-        <div class="user-name">TEMPEST NETWORK</div>
+        <img src="https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg" class="profile-circle">
+        <div class="main-title">TEMPEST NETWORK</div>
     </div>
 
     <div class="menu-container">
         <div class="nav-card">
-            <div style="flex:1"><h3>📡 CHANNELS</h3><p style="color:var(--text-dim); font-size:12px;">Join our update hubs</p></div>
-            <button class="action-btn" onclick="openSec('CHANNELS')">SHOW</button>
+            <div><h3 style="margin:0;">📡 CHANNELS</h3><p style="color:var(--text-dim); font-size:12px;">Join Hubs</p></div>
+            <button class="btn-cyan" onclick="openSec('CHANNELS')">SHOW</button>
         </div>
         <div class="nav-card">
-            <div style="flex:1"><h3>🤖 MY BOTS</h3><p style="color:var(--text-dim); font-size:12px;">Automation & Tools</p></div>
-            <button class="action-btn" onclick="openSec('BOTS')">SHOW</button>
+            <div><h3 style="margin:0;">🤖 MY BOTS</h3><p style="color:var(--text-dim); font-size:12px;">Tools & Fun</p></div>
+            <button class="btn-cyan" onclick="openSec('BOTS')">SHOW</button>
         </div>
         <div class="nav-card">
-            <div style="flex:1"><h3>👥 OUR TEAM</h3><p style="color:var(--text-dim); font-size:12px;">Meet the creators</p></div>
-            <button class="action-btn" onclick="openSec('TEAM')">SHOW</button>
+            <div><h3 style="margin:0;">👥 OUR TEAM</h3><p style="color:var(--text-dim); font-size:12px;">The Creators</p></div>
+            <button class="btn-cyan" onclick="openSec('TEAM')">SHOW</button>
         </div>
     </div>
 
     <div id="details">
-        <span class="back-link" onclick="closeSec()">← BACK TO HOME</span>
-        <h2 id="det-title" style="color: var(--cyan-glow); margin-bottom:20px; text-transform: uppercase;"></h2>
+        <div class="back-nav"><button class="back-btn-neon" onclick="closeSec()">← BACK</button></div>
+        <h2 id="det-title"></h2>
         <div id="det-body"></div>
+    </div>
+
+    <div id="sub-details">
+        <div class="back-nav"><button class="back-btn-neon" onclick="closeSubSec()">← BACK</button></div>
+        <h2 id="sub-det-title"></h2>
+        <div id="sub-det-body"></div>
     </div>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
+
+        const myImg = "https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg";
+        const icons = {
+            tg: "https://telegra.ph/file/5a52d27448821908a8d13.png",
+            ig: "https://telegra.ph/file/0c9e6d08159b3d09a5b3a.png",
+            gh: "https://telegra.ph/file/13b86064f26b527783967.png",
+            dc: "https://telegra.ph/file/16d7a1240c0583489814a.png"
+        };
 
         function openSec(type) {
             const d = document.getElementById('details');
@@ -104,46 +142,60 @@
 
             if(type === 'CHANNELS') {
                 body.innerHTML = `
-                    <div class="sub-card">
-                        <img src="https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg" class="card-img">
-                        <div class="card-content">
-                            <h4>Anime Ongoing</h4>
-                            <p>Latest ongoing episodes in Hindi.</p>
-                            <a href="https://t.me/+mr5SZGOlW0U4YmQ1" class="join-btn" target="_blank">JOIN</a>
-                        </div>
+                    <div class="item-card">
+                        <img src="${myImg}" class="card-icon">
+                        <div class="card-info"><h4>Ongoing Anime</h4><p>Latest Hindi Episodes</p><a href="https://t.me/+mr5SZGOlW0U4YmQ1" class="btn-cyan">JOIN</a></div>
                     </div>
-                    <div class="sub-card">
-                        <img src="https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg" class="card-img">
-                        <div class="card-content">
-                            <h4>Tempest Index</h4>
-                            <p>Complete anime database index.</p>
-                            <a href="https://t.me/+WevEPT5r7K1lNjY1" class="join-btn" target="_blank">JOIN</a>
-                        </div>
+                    <div class="item-card">
+                        <img src="${myImg}" class="card-icon">
+                        <div class="card-info"><h4>Tempest Index</h4><p>All Anime List</p><a href="https://t.me/+WevEPT5r7K1lNjY1" class="btn-cyan">JOIN</a></div>
+                    </div>
+                `;
+            } else if(type === 'BOTS') {
+                body.innerHTML = `
+                    <div class="item-card">
+                        <img src="${myImg}" class="card-icon">
+                        <div class="card-info"><h4>Raphael Bot</h4><p>Best AI Manager</p><a href="https://t.me/tempest_animeresercher_bot" class="btn-cyan">OPEN</a></div>
                     </div>
                 `;
             } else if(type === 'TEAM') {
                 body.innerHTML = `
-                    <div class="sub-card">
-                        <img src="https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg" class="card-img">
-                        <div class="card-content">
-                            <h4>KAKASHI</h4>
-                            <p>Founder & Visionary</p>
-                            <a href="https://t.me/Thesoul_xD" class="join-btn" target="_blank">CHAT</a>
-                        </div>
+                    <div class="item-card">
+                        <img src="${myImg}" class="card-icon">
+                        <div class="card-info"><h4>KAKASHI</h4><p>Founder</p><button class="btn-cyan" onclick="openKakashi()">LINKS</button></div>
                     </div>
-                    <div class="sub-card">
-                        <img src="https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg" class="card-img">
-                        <div class="card-content">
-                            <h4>AKIRA</h4>
-                            <p>Lead Developer</p>
-                            <a href="https://t.me/MightyEmperor" class="join-btn" target="_blank">CHAT</a>
-                        </div>
+                    <div class="item-card">
+                        <img src="${myImg}" class="card-icon">
+                        <div class="card-info"><h4>AKIRA</h4><p>Lead Dev</p><a href="https://t.me/MightyEmperor" class="btn-cyan">CHAT</a></div>
                     </div>
                 `;
             }
             d.style.display = 'block';
         }
+
+        function openKakashi() {
+            const sub = document.getElementById('sub-details');
+            document.getElementById('sub-det-title').innerText = "KAKASHI LINKS";
+            document.getElementById('sub-det-body').innerHTML = `
+                <div class="item-card" onclick="openIdList()">
+                    <img src="${icons.tg}" style="width:40px">
+                    <div class="card-info"><h4>TELEGRAM</h4><p>Official IDs List</p></div>
+                </div>
+                <div class="item-card" onclick="window.open('https://instagram.com/Thesoul_xD')">
+                    <img src="${icons.ig}" style="width:40px">
+                    <div class="card-info"><h4>INSTAGRAM</h4><p>Follow Me</p></div>
+                </div>
+            `;
+            sub.style.display = 'block';
+        }
+
+        function openIdList() {
+            // यहाँ आप चाहें तो एक और लेयर जोड़ सकते हैं या सीधे IDs दिखा सकते हैं
+            alert("Main: @Thesoul_xD\nSupport: @Kakashi_Support");
+        }
+
         function closeSec() { document.getElementById('details').style.display = 'none'; }
+        function closeSubSec() { document.getElementById('sub-details').style.display = 'none'; }
     </script>
 </body>
 </html>
