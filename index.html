@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
@@ -7,17 +7,16 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         :root {
-            --bg-color: #0f0f1b;
-            --card-bg: #1a1a2e;
-            --accent: #e94560;
+            --bg-color: #000000;
+            --card-bg: #0d0d0d;
+            --cyan-glow: #00ffff;
             --text-main: #ffffff;
-            --text-dim: #a0a0c0;
+            --text-dim: #999999;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             margin: 0;
-            padding: 0;
             background-color: var(--bg-color);
             color: var(--text-main);
             display: flex;
@@ -26,145 +25,173 @@
             overflow-x: hidden;
         }
 
-        /* Header Style */
-        .header {
-            width: 100%;
-            padding: 30px 0;
+        /* Profile Section */
+        .profile-section {
+            margin-top: 50px;
             text-align: center;
-            background: linear-gradient(180deg, #16213e 0%, var(--bg-color) 100%);
-            border-bottom: 1px solid #252545;
         }
 
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-            letter-spacing: 3px;
-            color: var(--accent);
-            text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+        .profile-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid var(--cyan-glow);
+            box-shadow: 0 0 25px var(--cyan-glow);
+            object-fit: cover;
+            margin-bottom: 15px;
         }
 
-        /* Broadcast Section (New) */
-        .broadcast-box {
-            width: 85%;
-            background: #16213e;
-            border-left: 4px solid var(--accent);
-            margin: 20px 0;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-        
-        .broadcast-tag {
-            color: var(--accent);
+        .user-name {
+            font-size: 28px;
             font-weight: bold;
-            font-size: 12px;
-            display: block;
-            margin-bottom: 5px;
+            color: var(--cyan-glow);
+            text-shadow: 0 0 10px var(--cyan-glow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* Menu Buttons */
+        .user-tag {
+            font-size: 12px;
+            color: var(--text-dim);
+            letter-spacing: 3px;
+            margin-top: 8px;
+            font-weight: 300;
+        }
+
+        /* Menu Container */
         .menu-container {
-            width: 90%;
+            width: 92%;
+            margin-top: 40px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 50px;
+            gap: 18px;
         }
 
-        .nav-btn {
+        /* Card Style */
+        .nav-card {
             background: var(--card-bg);
-            border: 1px solid #252545;
-            color: white;
-            padding: 18px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            text-align: left;
+            border-radius: 18px;
+            padding: 22px;
+            border: 1px solid #1a1a1a;
             display: flex;
             justify-content: space-between;
             align-items: center;
             transition: 0.3s;
+        }
+
+        .card-info h3 {
+            margin: 0;
+            font-size: 19px;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        .card-info p {
+            margin: 6px 0 0;
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+
+        /* Cyan Button */
+        .action-btn {
+            background-color: var(--cyan-glow);
+            color: #000000;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 13px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
             cursor: pointer;
+            text-transform: uppercase;
         }
 
-        .nav-btn:active {
-            transform: scale(0.98);
-            background: #252545;
-        }
-
-        .nav-btn span {
-            color: var(--accent);
-            font-size: 20px;
-        }
-
-        /* Overlay for details */
+        /* Details Overlay */
         #details {
             display: none;
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: var(--bg-color);
-            z-index: 100;
-            padding: 20px;
+            z-index: 1000;
+            padding: 30px 25px;
             box-sizing: border-box;
         }
 
-        .close-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 20px;
+        .back-link {
+            color: var(--cyan-glow);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            display: block;
+            margin-bottom: 30px;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>TEMPEST NETWORK</h1>
-    </div>
-
-    <div class="broadcast-box" id="broadcast">
-        <span class="broadcast-tag">LATEST UPDATE</span>
-        <div id="news">स्वागत है रिमुरु! यहाँ आपके चैनल्स की ताज़ा अपडेट्स दिखेंगी।</div>
+    <div class="profile-section">
+        <img src="https://graph.org/file/9c42657eb544eed3f1bb1-79928d280532a17768.jpg" alt="Profile" class="profile-circle">
+        <div class="user-name">TEMPEST NETWORK</div>
+        <div class="user-tag">DEVELOPER • ANIME HUB</div>
     </div>
 
     <div class="menu-container">
-        <div class="nav-btn" onclick="openSection('CHANNELS')">CHANNELS <span>&rsaquo;</span></div>
-        <div class="nav-btn" onclick="openSection('BOTS')">BOTS <span>&rsaquo;</span></div>
-        <div class="nav-btn" onclick="openSection('TEAM')">TEAM <span>&rsaquo;</span></div>
+        <div class="nav-card">
+            <div class="card-info">
+                <h3>📡 CHANNELS</h3>
+                <p>Ongoing & Main Updates</p>
+            </div>
+            <button class="action-btn" onclick="openSec('CHANNELS')">SHOW</button>
+        </div>
+
+        <div class="nav-card">
+            <div class="card-info">
+                <h3>🤖 MY BOTS</h3>
+                <p>Automation & Tools</p>
+            </div>
+            <button class="action-btn" onclick="openSec('BOTS')">SHOW</button>
+        </div>
+
+        <div class="nav-card">
+            <div class="card-info">
+                <h3>👥 TEAM</h3>
+                <p>Meet the Creators</p>
+            </div>
+            <button class="action-btn" onclick="openSec('TEAM')">SHOW</button>
+        </div>
     </div>
 
     <div id="details">
-        <h2 id="det-title" style="color: var(--accent);"></h2>
-        <p id="det-body" style="line-height: 1.6; color: var(--text-dim);"></p>
-        <button class="close-btn" onclick="closeSection()">Back to Menu</button>
+        <span class="back-link" onclick="closeSec()">← BACK TO HOME</span>
+        <h2 id="det-title" style="color: var(--cyan-glow); font-size: 28px; text-shadow: 0 0 10px var(--cyan-glow);"></h2>
+        <div id="det-body" style="color: #ffffff; line-height: 2; font-size: 16px; margin-top: 20px;"></div>
     </div>
 
     <script>
-        // Initialize Telegram WebApp
         const tg = window.Telegram.WebApp;
-        tg.expand(); // Full screen mode
+        tg.expand();
 
-        function openSection(type) {
-            const details = document.getElementById('details');
+        function openSec(type) {
+            const d = document.getElementById('details');
             const title = document.getElementById('det-title');
             const body = document.getElementById('det-body');
-
-            title.innerText = type;
             
-            if(type === 'CHANNELS') {
-                body.innerHTML = "• Anime Ongoing<br>• Anime Tempest<br>• Main Channel<br><br>सभी चैनल्स की लिंक यहाँ अपडेट होंगी।";
-            } else if(type === 'BOTS') {
-                body.innerHTML = "• Raphael Bot (V3)<br>• Anime Search Bot<br>• Filter Bot";
-            } else if(type === 'TEAM') {
-                body.innerHTML = "Admin: Rimiru<br>Developer: Raphael AI<br>Community: Tempest Network";
-            }
+            title.innerText = type;
 
-            details.style.display = 'block';
+            if(type === 'CHANNELS') {
+                body.innerHTML = "• <a href='#' style='color:var(--cyan-glow)'>Anime Ongoing</a><br>• <a href='#' style='color:var(--cyan-glow)'>Anime Tempest</a><br>• <a href='#' style='color:var(--cyan-glow)'>Main Channel</a>";
+            } else if(type === 'BOTS') {
+                body.innerHTML = "• Raphael Bot (V3)<br>• Anime Searcher<br>• Filter Pro";
+            } else if(type === 'TEAM') {
+                body.innerHTML = "• Founder: Rimiru<br>• Dev: Raphael AI";
+            }
+            
+            d.style.display = 'block';
         }
 
-        function closeSection() {
+        function closeSec() {
             document.getElementById('details').style.display = 'none';
         }
     </script>
