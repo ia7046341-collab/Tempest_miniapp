@@ -2,121 +2,171 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tempest Network Mini App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tempest Network</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        /* बेसिक CSS सेटिंग्स */
+        :root {
+            --bg-color: #0f0f1b;
+            --card-bg: #1a1a2e;
+            --accent: #e94560;
+            --text-main: #ffffff;
+            --text-dim: #a0a0c0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a2e; /* गहरा नीला बैकग्राउंड */
-            color: #ffffff;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* हेडर (लोगो और नाम) */
+        /* Header Style */
         .header {
+            width: 100%;
+            padding: 30px 0;
             text-align: center;
-            margin-top: 40px;
-            margin-bottom: 30px;
+            background: linear-gradient(180deg, #16213e 0%, var(--bg-color) 100%);
+            border-bottom: 1px solid #252545;
         }
 
         .header h1 {
-            color: #e94560; /* चमकीला गुलाबी/लाल रंग */
-            font-size: 2em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 3px;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
         }
 
-        /* बटन कंटेनर */
-        .button-container {
+        /* Broadcast Section (New) */
+        .broadcast-box {
+            width: 85%;
+            background: #16213e;
+            border-left: 4px solid var(--accent);
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .broadcast-tag {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 12px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Menu Buttons */
+        .menu-container {
             width: 90%;
-            max-width: 400px;
             display: flex;
             flex-direction: column;
-            gap: 20px; /* बटनों के बीच की जगह */
+            gap: 15px;
+            margin-bottom: 50px;
         }
 
-        /* बटनों का स्टाइल */
-        .menu-button {
-            background-color: #16213e; /* गहरा नीला, बैकग्राउंड से थोड़ा अलग */
+        .nav-btn {
+            background: var(--card-bg);
+            border: 1px solid #252545;
             color: white;
-            border: 2px solid #e94560; /* बॉर्डर का रंग */
-            padding: 20px;
-            font-size: 1.2em;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
             text-align: left;
-            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
             cursor: pointer;
-            transition: background-color 0.3s;
-            text-transform: capitalize;
         }
 
-        /* बटन पर होवर करने पर (जब उंगली लाएँ) */
-        .menu-button:hover {
-            background-color: #e94560; /* बटन का रंग बदल जाएगा */
+        .nav-btn:active {
+            transform: scale(0.98);
+            background: #252545;
         }
 
-        /* जानकारी दिखाने वाला सेक्शन (शुरू में छुपा रहेगा) */
-        #info-content {
-            margin-top: 30px;
+        .nav-btn span {
+            color: var(--accent);
+            font-size: 20px;
+        }
+
+        /* Overlay for details */
+        #details {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-color);
+            z-index: 100;
             padding: 20px;
-            width: 80%;
-            border: 1px solid #ffffff;
-            border-radius: 10px;
-            text-align: center;
-            display: none; /* इसे छुपा कर रखता है */
+            box-sizing: border-box;
+        }
+
+        .close-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>Tempest Network</h1>
+        <h1>TEMPEST NETWORK</h1>
     </div>
 
-    <div class="button-container">
-        <button class="menu-button" onclick="showContent('channels')">Channels</button>
-        <button class="menu-button" onclick="showContent('bots')">Bots</button>
-        <button class="menu-button" onclick="showContent('team')">Team</button>
+    <div class="broadcast-box" id="broadcast">
+        <span class="broadcast-tag">LATEST UPDATE</span>
+        <div id="news">स्वागत है रिमुरु! यहाँ आपके चैनल्स की ताज़ा अपडेट्स दिखेंगी।</div>
     </div>
 
-    <div id="info-content">
-        <h2 id="content-title"></h2>
-        <p id="content-text"></p>
+    <div class="menu-container">
+        <div class="nav-btn" onclick="openSection('CHANNELS')">CHANNELS <span>&rsaquo;</span></div>
+        <div class="nav-btn" onclick="openSection('BOTS')">BOTS <span>&rsaquo;</span></div>
+        <div class="nav-btn" onclick="openSection('TEAM')">TEAM <span>&rsaquo;</span></div>
+    </div>
+
+    <div id="details">
+        <h2 id="det-title" style="color: var(--accent);"></h2>
+        <p id="det-body" style="line-height: 1.6; color: var(--text-dim);"></p>
+        <button class="close-btn" onclick="closeSection()">Back to Menu</button>
     </div>
 
     <script>
-        // JavaScript कोड: बटनों को काम करने लायक बनाने के लिए
+        // Initialize Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Full screen mode
 
-        function showContent(section) {
-            var title = document.getElementById('content-title');
-            var text = document.getElementById('content-text');
-            var container = document.getElementById('info-content');
+        function openSection(type) {
+            const details = document.getElementById('details');
+            const title = document.getElementById('det-title');
+            const body = document.getElementById('det-body');
 
-            // पहले से दिख रही जानकारी को साफ़ करें
-            title.innerText = "";
-            text.innerText = "";
-
-            // क्लिक किए गए बटन के अनुसार जानकारी बदलें
-            if (section === 'channels') {
-                title.innerText = "हमारे चैनल्स";
-                text.innerText = "यहाँ आपको एनीमे ऑनगोइंग, एनीमे टेंपेस्ट और मेन चैनल की लिंक मिलेंगी।";
-            } else if (section === 'bots') {
-                title.innerText = "हमारे बॉट्स";
-                text.innerText = "हमारे द्वारा बनाए गए उपयोगी एनीमे बॉट्स की सूची।";
-            } else if (section === 'team') {
-                title.innerText = "हमारी टीम";
-                text.innerText = "Tempest Network को चलाने वाले सदस्यों की जानकारी।";
+            title.innerText = type;
+            
+            if(type === 'CHANNELS') {
+                body.innerHTML = "• Anime Ongoing<br>• Anime Tempest<br>• Main Channel<br><br>सभी चैनल्स की लिंक यहाँ अपडेट होंगी।";
+            } else if(type === 'BOTS') {
+                body.innerHTML = "• Raphael Bot (V3)<br>• Anime Search Bot<br>• Filter Bot";
+            } else if(type === 'TEAM') {
+                body.innerHTML = "Admin: Rimiru<br>Developer: Raphael AI<br>Community: Tempest Network";
             }
 
-            // जानकारी वाले सेक्शन को दिखाएँ
-            container.style.display = "block";
+            details.style.display = 'block';
+        }
+
+        function closeSection() {
+            document.getElementById('details').style.display = 'none';
         }
     </script>
-
 </body>
 </html>
