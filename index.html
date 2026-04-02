@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempest Network Mini App</title>
+    <style>
+        /* बेसिक CSS सेटिंग्स */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a2e; /* गहरा नीला बैकग्राउंड */
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* हेडर (लोगो और नाम) */
+        .header {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #e94560; /* चमकीला गुलाबी/लाल रंग */
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* बटन कंटेनर */
+        .button-container {
+            width: 90%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* बटनों के बीच की जगह */
+        }
+
+        /* बटनों का स्टाइल */
+        .menu-button {
+            background-color: #16213e; /* गहरा नीला, बैकग्राउंड से थोड़ा अलग */
+            color: white;
+            border: 2px solid #e94560; /* बॉर्डर का रंग */
+            padding: 20px;
+            font-size: 1.2em;
+            text-align: left;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-transform: capitalize;
+        }
+
+        /* बटन पर होवर करने पर (जब उंगली लाएँ) */
+        .menu-button:hover {
+            background-color: #e94560; /* बटन का रंग बदल जाएगा */
+        }
+
+        /* जानकारी दिखाने वाला सेक्शन (शुरू में छुपा रहेगा) */
+        #info-content {
+            margin-top: 30px;
+            padding: 20px;
+            width: 80%;
+            border: 1px solid #ffffff;
+            border-radius: 10px;
+            text-align: center;
+            display: none; /* इसे छुपा कर रखता है */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Tempest Network</h1>
+    </div>
+
+    <div class="button-container">
+        <button class="menu-button" onclick="showContent('channels')">Channels</button>
+        <button class="menu-button" onclick="showContent('bots')">Bots</button>
+        <button class="menu-button" onclick="showContent('team')">Team</button>
+    </div>
+
+    <div id="info-content">
+        <h2 id="content-title"></h2>
+        <p id="content-text"></p>
+    </div>
+
+    <script>
+        // JavaScript कोड: बटनों को काम करने लायक बनाने के लिए
+
+        function showContent(section) {
+            var title = document.getElementById('content-title');
+            var text = document.getElementById('content-text');
+            var container = document.getElementById('info-content');
+
+            // पहले से दिख रही जानकारी को साफ़ करें
+            title.innerText = "";
+            text.innerText = "";
+
+            // क्लिक किए गए बटन के अनुसार जानकारी बदलें
+            if (section === 'channels') {
+                title.innerText = "हमारे चैनल्स";
+                text.innerText = "यहाँ आपको एनीमे ऑनगोइंग, एनीमे टेंपेस्ट और मेन चैनल की लिंक मिलेंगी।";
+            } else if (section === 'bots') {
+                title.innerText = "हमारे बॉट्स";
+                text.innerText = "हमारे द्वारा बनाए गए उपयोगी एनीमे बॉट्स की सूची।";
+            } else if (section === 'team') {
+                title.innerText = "हमारी टीम";
+                text.innerText = "Tempest Network को चलाने वाले सदस्यों की जानकारी।";
+            }
+
+            // जानकारी वाले सेक्शन को दिखाएँ
+            container.style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
